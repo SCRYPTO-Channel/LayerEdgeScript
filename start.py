@@ -8,11 +8,11 @@ from tqdm import tqdm  # For progress bar
 scripts = {
     "1": {
         "name": "LayerEdge Auto Referrals",
-        "path": r"autoreff\dist\index.js"
+        "path": os.path.join("autoreff", "dist", "index.js")
     },
     "2": {
         "name": "LayerEdge Autorun",
-        "path": r"autorun\main.js"
+        "path": os.path.join("autorun", "main.js")
     }
 }
 
