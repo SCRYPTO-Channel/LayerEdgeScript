@@ -8,11 +8,11 @@ from tqdm import tqdm  # For progress bar
 scripts = {
     "1": {
         "name": "LayerEdge Auto Referrals",
-        "path": os.path.join("autoreff", "dist", "index.js")
+        "path": r"autoreff\dist\index.js"
     },
     "2": {
         "name": "LayerEdge Autorun",
-        "path": os.path.join("autorun", "main.js")
+        "path": r"autorun\main.js"
     }
 }
 
@@ -71,7 +71,7 @@ elif choice in scripts:
     script_path = scripts[choice]["path"]
     if os.path.exists(script_path):
         print(f"\nRunning {scripts[choice]['name']}...\n")
-            subprocess.run(["node", "-e", f"require('{script_path}')"], shell=False)
+        subprocess.run(["node", script_path], shell=True)  # Start JS files
     else:
         print(f"\n❌ Error: Script file not found at {script_path}")
 else:
