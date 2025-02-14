@@ -8,11 +8,11 @@ from tqdm import tqdm  # For progress bar
 scripts = {
     "1": {
         "name": "LayerEdge Auto Referrals",
-        "path": r"autoreff/dist/index.js"
+        "path": os.path.join("autoreff", "dist", "index.js")
     },
     "2": {
         "name": "LayerEdge Autorun",
-        "path": r"autorun/main.js"
+        "path": os.path.join("autorun", "main.js")
     }
 }
 
@@ -22,7 +22,7 @@ def run_command_with_progress(command, description, project_dir):
     
     # Simulating progress (since subprocess doesn't show real-time output)
     with tqdm(total=100, bar_format="{l_bar}%s{bar}%s" % (Fore.YELLOW, Style.RESET_ALL)) as pbar:
-        process = subprocess.Popen(command, shell=True, cwd=project_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(command, shell=False, cwd=project_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while process.poll() is None:  # While process is still running
             time.sleep(0.3)  # Simulate work
             pbar.update(10)  # Update progress
@@ -71,7 +71,8 @@ elif choice in scripts:
     script_path = scripts[choice]["path"]
     if os.path.exists(script_path):
         print(f"\nRunning {scripts[choice]['name']}...\n")
-        subprocess.run(["node", script_path], shell=True)  # Start JS files
+        # Using full path for node to avoid REPL
+        subprocess.run(["/usr/bin/node", script_path], shell=False)  # Start JS files
     else:
         print(f"\n❌ Error: Script file not found at {script_path}")
 else:
