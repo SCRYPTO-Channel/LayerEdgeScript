@@ -57,7 +57,6 @@ print("\nLayerEdge Scripts:\n")
 for key, value in scripts.items():
     print(f"{Fore.GREEN}{key}. {value['name']}{Style.RESET_ALL}")
 print(f"{Fore.GREEN}3. Install & Build Scripts{Style.RESET_ALL}")
-print(f"{Fore.RED}4. Exit{Style.RESET_ALL}")
 
 # User input
 choice = input("\nSelect Number To Start: ")
@@ -76,8 +75,5 @@ elif choice in scripts:
         subprocess.run(["/usr/bin/node", script_path], shell=False)  # Start JS files
     else:
         print(f"\n❌ Error: Script file not found at {script_path}")
-elif choice == "4":
-    print(f"\n{Fore.RED}Exiting the program...{Style.RESET_ALL}")
-    exit()  # Exit the program
 else:
     print("\n❌ Invalid choice! Please enter a valid number.")
