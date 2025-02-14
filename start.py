@@ -71,7 +71,7 @@ elif choice in scripts:
     script_path = scripts[choice]["path"]
     if os.path.exists(script_path):
         print(f"\nRunning {scripts[choice]['name']}...\n")
-        subprocess.run(["node", script_path], shell=True)  # Start JS files
+            subprocess.run(["node", "-e", f"require('{script_path}')"], shell=False)
     else:
         print(f"\n❌ Error: Script file not found at {script_path}")
 else:
