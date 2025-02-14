@@ -22,7 +22,7 @@ def run_command_with_progress(command, description, project_dir):
     
     # Simulating progress (since subprocess doesn't show real-time output)
     with tqdm(total=100, bar_format="{l_bar}%s{bar}%s" % (Fore.YELLOW, Style.RESET_ALL)) as pbar:
-        process = subprocess.Popen(command, shell=False, cwd=project_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(command, shell=True, cwd=project_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while process.poll() is None:  # While process is still running
             time.sleep(0.3)  # Simulate work
             pbar.update(10)  # Update progress
